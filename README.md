@@ -1,4 +1,7 @@
+# Jade
+Attendance sheet for students
 
+**Disclaimer : This project is still in early development**
 
 ## config
 
