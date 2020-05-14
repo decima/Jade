@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ypuzPM3" resname="attendance sheet">
+        <source>attendance sheet</source>
+        <target>Feuille d'émargement </target>
+      </trans-unit>
+      <trans-unit id="4Nld1jR" resname="Refresh student list">
+        <source>Refresh student list</source>
+        <target>Mettre à jour la liste des étudiants</target>
+      </trans-unit>
+      <trans-unit id="Khm7eN4" resname="Students">
+        <source>Students</source>
+        <target>Étudiants</target>
+      </trans-unit>
+      <trans-unit id="1rPoyCj" resname="Presence">
+        <source>Presence</source>
+        <target>Présence</target>
+      </trans-unit>
+      <trans-unit id="Q.m4nAu" resname="Present">
+        <source>Present</source>
+        <target>Présent</target>
+      </trans-unit>
+      <trans-unit id="hP0298v" resname="Absent">
+        <source>Absent</source>
+        <target>Absent</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

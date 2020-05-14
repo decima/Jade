@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% trans %}attendance sheet{% endtrans %}
+{% endblock %}
+
+{% block body %}
+    <h1>
+        {% trans %}attendance sheet{% endtrans %}
+    </h1>
+    {{ course.startAt|date("d/m/Y H:i") }} - {{ course.endAt|date("d/m/Y H:i") }}<br/>
+    {{ course.promotion }}
+    <a class="d-print-none" href="{{ path('attendance', {course:course.id}) }}">{{ "Refresh student list"|trans }}</a>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>{{ "Students"|trans }}</th>
+                    <th>{{ "Presence"|trans }}</th>
+                </tr>
+                {% for attendance in course.attendances %}
+
+                    <tr class=" student-row">
+                        <td class="col-8">
+                            <label for="checkbox-{{ attendance.id }}">
+
+                                {{ attendance.student.firstname }} {{ attendance.student.lastname|upper }}
+                            </label>
+
+                        </td> {% if course.isClosed %}
+                            <td class="student {{ attendance.isHere?"present":"absent" }}">
+                                {{ attendance.isHere?("Present"|trans):"Absent"|trans }}
+                            </td>
+                        {% else %}
+
+                            <td class="col-4">
+                                <div class=" ">
+                                    <input onclick="check({{ attendance.student.id }})" class=" presence-checkbox"
+                                           type="checkbox"
+                                           id="checkbox-{{ attendance.id }}" {{ attendance.isHere?"checked":"" }}/>
+                                </div>
+                            </td>
+                        {% endif %}
+
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>{{ "Teacher"|trans }}</th>
+                    <th>{{ "Presence"|trans }}</th>
+                </tr>
+
+                <tr class=" teacher-row">
+                    <td class="col-8">
+                        <label for="checkbox-teacher-{{ course.id }}">
+
+                            {{ course.teacher.firstname }} {{ course.teacher.lastname|upper }}
+                        </label>
+
+                    </td> {% if course.isClosed %}
+                        <td class="student {{ course.hasTeacherAttending?"present":"absent" }}">
+                            {{ course.hasTeacherAttending?("Present"|trans):"Absent"|trans }}
+                        </td>
+                    {% else %}
+
+                        <td class="col-4">
+                            <div class=" ">
+                                <input onclick="checkTeacher({{ course.id }})" class=" presence-checkbox"
+                                       type="checkbox"
+                                       id="checkbox-teacher-{{ course.id }}" {{ course.hasTeacherAttending?"checked":"" }}/>
+                            </div>
+                        </td>
+                    {% endif %}
+
+                </tr>
+
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        .student.present, .teacher.present {
+            background-color: #81c784;
+            color: black;
+        }
+
+        .student.absent, .teacher.absent {
+            background-color: #ef5350;
+            color: black;
+
+        }
+    </style>
+{% endblock %}
